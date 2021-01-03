@@ -6,38 +6,40 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 15:33:59 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 13:18:59 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:08:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static char			*create_result(t_attr tmp)
+static char	*create_result(t_attr tmp)
 {
-	char *result;
+	char	*result;
 
 	if (tmp.width == 0)
 	{
-		if (!(result = malloc(2 * sizeof(char))))
+		result = malloc(2 * sizeof(char));
+		if (!result)
 			return (0);
 	}
 	else
 	{
-		if (!(result = malloc((tmp.width + 1) * sizeof(char))))
+		result = malloc((tmp.width + 1) *sizeof(char));
+		if (!result)
 			return (0);
 	}
 	return (result);
 }
 
-static void			fill(char c, char *result)
+static void	fill(char c, char *result)
 {
 	result[0] = c;
 	result[1] = '\0';
 }
 
-static void			fill_right(char c, char *result, t_attr tmp)
+static void	fill_right(char c, char *result, t_attr tmp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < (tmp.width - 1))
@@ -50,9 +52,9 @@ static void			fill_right(char c, char *result, t_attr tmp)
 	result[i] = '\0';
 }
 
-static void			fill_left(char c, char *result, t_attr tmp)
+static void	fill_left(char c, char *result, t_attr tmp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	result[i] = c;
@@ -61,13 +63,14 @@ static void			fill_left(char c, char *result, t_attr tmp)
 	result[i] = '\0';
 }
 
-int					handle_char(char c, t_attr tmp)
+int	handle_char(char c, t_attr tmp)
 {
 	char	*result;
 	int		str_len;
 	int		k;
 
-	if (!(result = create_result(tmp)))
+	result = create_result(tmp);
+	if (!result)
 		return (0);
 	if (tmp.width <= 1)
 		fill(c, result);
@@ -78,7 +81,10 @@ int					handle_char(char c, t_attr tmp)
 		if (tmp.minus == 1)
 			fill_left(c, result, tmp);
 	}
-	str_len = (tmp.width == 0) ? 1 : tmp.width;
+	if (tmp.width == 0)
+		str_len = 1;
+	else
+		str_len = tmp.width;
 	k = 0;
 	while (k < str_len)
 		ft_putchar_fd(result[k++], 1);

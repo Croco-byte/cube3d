@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 13:53:28 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 16:55:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 13:32:57 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	free_game_buffer(t_frame *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!game->buffer)
 		return ;
-	while (i < game->screenHeight2)
+	while (i < game->screenheight)
 	{
 		free(game->buffer[i]);
 		i++;
@@ -29,7 +29,7 @@ void	free_game_buffer(t_frame *game)
 
 void	free_game_worldmap(t_frame *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!game->worldmap2)

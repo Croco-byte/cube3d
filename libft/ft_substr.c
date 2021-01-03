@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 09:42:08 by user42            #+#    #+#             */
-/*   Updated: 2020/11/19 15:00:38 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 15:43:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	substr_size(char const *s, unsigned int start, size_t len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (start + len <= ft_strlen(s))
@@ -27,7 +27,7 @@ static int	substr_size(char const *s, unsigned int start, size_t len)
 	}
 }
 
-char		*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*substr;
@@ -35,12 +35,14 @@ char		*ft_substr(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (start > ft_strlen(s) || !s || len == 0)
 	{
-		if (!(substr = malloc(1 * sizeof(char))))
+		substr = malloc(1 * sizeof(char));
+		if (!substr)
 			return (0);
 		substr[0] = '\0';
 		return (substr);
 	}
-	if (!(substr = malloc((substr_size(s, start, len) + 1) * sizeof(char))))
+	substr = malloc((substr_size(s, start, len) + 1) *sizeof(char));
+	if (!substr)
 		return (0);
 	while (i < len && s[start + i])
 	{

@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 13:04:06 by user42            #+#    #+#             */
-/*   Updated: 2020/12/29 12:19:36 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 13:37:04 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int			has_return(char *str)
+int	has_return(char *str)
 {
 	int		i;
 
@@ -28,7 +28,7 @@ int			has_return(char *str)
 	return (0);
 }
 
-char		*ft_gnljoin(char const *s1, char const *s2)
+char	*ft_gnljoin(char const *s1, char const *s2)
 {
 	size_t	i;
 	size_t	k;
@@ -42,7 +42,8 @@ char		*ft_gnljoin(char const *s1, char const *s2)
 	s2_size = ft_strlen(s2);
 	if (!s1 && !s2)
 		return (0);
-	if (!(result = malloc((s1_size + s2_size + 1) * sizeof(char))))
+	result = malloc((s1_size + s2_size + 1) *sizeof(char));
+	if (!result)
 		return (0);
 	while (++i < s1_size)
 		result[i] = s1[i];
@@ -53,7 +54,7 @@ char		*ft_gnljoin(char const *s1, char const *s2)
 	return (result);
 }
 
-int			is_last_line(char *save, int *last_line, int i)
+int	is_last_line(char *save, int *last_line, int i)
 {
 	if (!save[i])
 	{
@@ -65,7 +66,7 @@ int			is_last_line(char *save, int *last_line, int i)
 		return (0);
 }
 
-char		*update_save(char *save, int *last_line)
+char	*update_save(char *save, int *last_line)
 {
 	int		i;
 	int		k;
@@ -81,7 +82,8 @@ char		*update_save(char *save, int *last_line)
 		return (0);
 	else
 		i++;
-	if (!(new_save = malloc(((ft_strlen(save) - i) + 1) * sizeof(char))))
+	new_save = malloc(((ft_strlen(save) - i) + 1) *sizeof(char));
+	if (!new_save)
 	{
 		free(save);
 		return (0);

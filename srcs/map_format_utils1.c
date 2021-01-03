@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 12:16:19 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 16:55:08 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:06:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	check_first_line(t_frame *game)
 {
-	int start;
-	int end;
-	int startwall;
+	int	start;
+	int	end;
+	int	startwall;
 
 	start = 0;
 	end = ft_strlen(game->worldmap2[0]) - 1;
@@ -41,7 +41,7 @@ static int	check_first_line(t_frame *game)
 
 static int	check_first_left(int i, t_frame *game)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (game->worldmap2[i][j] == ' ')
@@ -56,7 +56,7 @@ static int	check_first_left(int i, t_frame *game)
 
 static void	check_left_inf(t_frame *game, int i, int startwall, int nextwall)
 {
-	int temp;
+	int	temp;
 
 	if (nextwall < startwall - 1)
 	{
@@ -76,7 +76,7 @@ static void	check_left_inf(t_frame *game, int i, int startwall, int nextwall)
 
 static void	check_left_sup(t_frame *game, int i, int startwall, int nextwall)
 {
-	int temp;
+	int	temp;
 
 	if (nextwall > startwall + 1)
 	{
@@ -94,11 +94,11 @@ static void	check_left_sup(t_frame *game, int i, int startwall, int nextwall)
 	}
 }
 
-void		check_left(t_frame *game)
+void	check_left(t_frame *game)
 {
-	int i;
-	int j;
-	int startwall;
+	int	i;
+	int	j;
+	int	startwall;
 	int	nextwall;
 
 	i = 1;

@@ -6,38 +6,40 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/10 11:59:05 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 13:22:17 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:39:48 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static char		*create_result(t_attr tmp)
+static char	*create_result(t_attr tmp)
 {
-	char *result;
+	char	*result;
 
 	if (tmp.width == 0)
 	{
-		if (!(result = malloc(2 * sizeof(char))))
+		result = malloc(2 * sizeof(char));
+		if (!result)
 			return (0);
 	}
 	else
 	{
-		if (!(result = malloc((tmp.width + 1) * sizeof(char))))
+		result = malloc((tmp.width + 1) *sizeof(char));
+		if (!result)
 			return (0);
 	}
 	return (result);
 }
 
-static void		fill(char *result)
+static void	fill(char *result)
 {
 	result[0] = '%';
 	result[1] = '\0';
 }
 
-static void		fill_right(char *result, t_attr tmp)
+static void	fill_right(char *result, t_attr tmp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < (tmp.width - 1))
@@ -53,9 +55,9 @@ static void		fill_right(char *result, t_attr tmp)
 	result[i] = '\0';
 }
 
-static void		fill_left(char *result, t_attr tmp)
+static void	fill_left(char *result, t_attr tmp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	result[i] = '%';
@@ -64,12 +66,13 @@ static void		fill_left(char *result, t_attr tmp)
 	result[i] = '\0';
 }
 
-int				handle_percent(t_attr tmp)
+int	handle_percent(t_attr tmp)
 {
 	char	*result;
 	int		str_len;
 
-	if (!(result = create_result(tmp)))
+	result = create_result(tmp);
+	if (!result)
 		return (0);
 	if (tmp.width <= 1)
 		fill(result);

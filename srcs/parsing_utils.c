@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:17:23 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 16:54:45 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:12:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		is_map_digit(char c)
+int	is_map_digit(char c)
 {
 	if (c == '0' || c == '1' || c == '2'
 		|| c == '3' || c == '4' || c == '5')
@@ -20,9 +20,9 @@ int		is_map_digit(char c)
 	return (0);
 }
 
-int		pass_spaces(char *line, int i)
+int	pass_spaces(char *line, int i)
 {
-	int spaces_number;
+	int	spaces_number;
 
 	spaces_number = 0;
 	while (line[i] && ft_isspace(line[i]))
@@ -47,7 +47,8 @@ char	*ft_mapjoin(char const *s1, char const *s2)
 	s2_size = ft_strlen(s2);
 	if (!s1 && !s2)
 		return (0);
-	if (!(result = malloc((s1_size + s2_size + 2) * sizeof(char))))
+	result = malloc((s1_size + s2_size + 2) *sizeof(char));
+	if (!result)
 		return (0);
 	while (++i < s1_size)
 		result[i] = s1[i];
@@ -59,9 +60,9 @@ char	*ft_mapjoin(char const *s1, char const *s2)
 	return (result);
 }
 
-int		open_map(t_frame *game, int argc, char **argv)
+int	open_map(t_frame *game, int argc, char **argv)
 {
-	int fd;
+	int	fd;
 
 	if (argc < 2)
 	{

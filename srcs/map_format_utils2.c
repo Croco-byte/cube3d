@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/02 12:18:57 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 16:52:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:06:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	check_last_line(t_frame *game)
 {
-	int start;
-	int end;
-	int startwall;
+	int	start;
+	int	end;
+	int	startwall;
 
 	start = 0;
 	end = ft_strlen(game->worldmap2[game->nboflines - 1]) - 1;
@@ -41,8 +41,8 @@ static int	check_last_line(t_frame *game)
 
 static int	check_last_right(int i, t_frame *game)
 {
-	int j;
-	int count;
+	int	j;
+	int	count;
 
 	count = 0;
 	j = ft_strlen(game->worldmap2[i]) - 1;
@@ -61,7 +61,7 @@ static int	check_last_right(int i, t_frame *game)
 
 static void	check_right_inf(t_frame *game, int i, int startwall, int nextwall)
 {
-	int temp;
+	int	temp;
 
 	if (nextwall < startwall - 1)
 	{
@@ -81,7 +81,7 @@ static void	check_right_inf(t_frame *game, int i, int startwall, int nextwall)
 
 static void	check_right_sup(t_frame *game, int i, int startwall, int nextwall)
 {
-	int temp;
+	int	temp;
 
 	if (nextwall > startwall + 1)
 	{
@@ -99,11 +99,11 @@ static void	check_right_sup(t_frame *game, int i, int startwall, int nextwall)
 	}
 }
 
-void		check_right(t_frame *game)
+void	check_right(t_frame *game)
 {
-	int i;
-	int j;
-	int startwall;
+	int	i;
+	int	j;
+	int	startwall;
 	int	nextwall;
 
 	i = game->nboflines - 2;

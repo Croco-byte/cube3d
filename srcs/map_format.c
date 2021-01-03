@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 13:42:34 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 17:00:11 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:07:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		is_map_char(char c)
+int	is_map_char(char c)
 {
 	if (c == '0' || c == '1' || c == '2' || c == '3'
 		|| c == '4' || c == '5' || c == 'N' || c == 'S'
@@ -23,8 +23,8 @@ int		is_map_char(char c)
 
 void	check_map_content(t_frame *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (game->worldmap2[i])

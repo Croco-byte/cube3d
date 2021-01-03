@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   utilities2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 16:31:05 by user42            #+#    #+#             */
-/*   Updated: 2021/01/03 15:54:34 by user42           ###   ########.fr       */
+/*   Created: 2021/01/03 16:14:35 by user42            #+#    #+#             */
+/*   Updated: 2021/01/03 16:54:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+long	invert_negatives(long nbr)
 {
-	size_t			i;
-	size_t			size_dest;
-	size_t			size_src;
+	if (nbr < 0)
+		return (-nbr);
+	return (nbr);
+}
 
-	i = 0;
-	size_dest = ft_strlen(dst);
-	size_src = ft_strlen(src);
-	if (size <= size_dest)
-		return (size_src + size);
-	while (src[i] && size_dest + i < size - 1)
-	{
-		dst[size_dest + i] = src[i];
-		i++;
-	}
-	dst[size_dest + i] = '\0';
-	return (size_dest + size_src);
+void	init(char *base, long n, long *nbr, int *i)
+{
+	base = "0123456789abcdef";
+	*nbr = n;
+	*i = 0;
+}
+
+void	init2(char c, char *base, int *i)
+{
+	if (c == 'x')
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
+	*i = 0;
 }

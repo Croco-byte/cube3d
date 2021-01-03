@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 15:55:15 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 16:54:16 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:10:31 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_map_infos(t_frame *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (game->worldmap2 == 0)
@@ -105,7 +105,7 @@ void	parse_stuff(t_frame *game, int argc, char **argv)
 
 	fd = open_map(game, argc, argv);
 	parse_options_and_map(game, fd);
-	if (game->screenHeight2 <= 0 || game->screenWidth2 <= 0)
+	if (game->screenheight <= 0 || game->screenwidth <= 0)
 	{
 		ft_printf("Resolution can't be 0 or inferior. Exiting...\n");
 		clean_exit(game);

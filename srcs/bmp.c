@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 12:58:59 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 17:05:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 13:31:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static void	create_bmp_image(t_frame *game)
 {
-	game->bmp.img =
-	mlx_new_image(game->mlx, game->screenWidth2, game->screenHeight2);
+	game->bmp.img = mlx_new_image
+		(game->mlx, game->screenwidth, game->screenheight);
 	game->bmp.addr = mlx_get_data_addr(game->bmp.img, &game->bmp.bits_per_pixel,
-							&game->bmp.line_length, &game->bmp.endian);
+			&game->bmp.line_length, &game->bmp.endian);
 	handle_movements(game);
 	do_walls(game);
 	do_sprites(game);
@@ -30,8 +30,8 @@ static void	file_header(t_frame *game, int fd)
 	int	pixel_data_offset;
 
 	pixel_data_offset = 54;
-	file_size = pixel_data_offset + game->screenWidth2 *
-		game->screenHeight2 * 4;
+	file_size = pixel_data_offset + game->screenwidth
+		* game->screenheight * 4;
 	write(fd, "BM", 2);
 	write(fd, &file_size, 4);
 	write(fd, "\0\0\0\0", 4);
@@ -46,10 +46,10 @@ static void	image_header(t_frame *game, int fd)
 
 	header_size = 40;
 	plane = 1;
-	image_size = game->screenWidth2 * game->screenHeight2;
+	image_size = game->screenwidth * game->screenheight;
 	write(fd, &header_size, 4);
-	write(fd, &game->screenWidth2, 4);
-	write(fd, &game->screenHeight2, 4);
+	write(fd, &game->screenwidth, 4);
+	write(fd, &game->screenheight, 4);
 	write(fd, &plane, 2);
 	write(fd, &game->bmp.bits_per_pixel, 2);
 	write(fd, "\0\0\0\0", 4);
@@ -60,23 +60,23 @@ static void	image_header(t_frame *game, int fd)
 static void	fill_bitmap(t_frame *game, int fd)
 {
 	int	x;
-	int y;
+	int	y;
 	int	r;
 	int	g;
 	int	b;
 
-	y = game->screenHeight2;
+	y = game->screenheight;
 	while (--y >= 0)
 	{
 		x = 0;
-		while (x < game->screenWidth2)
+		while (x < game->screenwidth)
 		{
-			r = game->bmp.addr[y * game->bmp.line_length + x *
-			game->bmp.bits_per_pixel / 8];
-			g = game->bmp.addr[y * game->bmp.line_length + x *
-			game->bmp.bits_per_pixel / 8 + 1];
-			b = game->bmp.addr[y * game->bmp.line_length + x *
-			game->bmp.bits_per_pixel / 8 + 2];
+			r = game->bmp.addr[y * game->bmp.line_length + x
+				* game->bmp.bits_per_pixel / 8];
+			g = game->bmp.addr[y * game->bmp.line_length + x
+				* game->bmp.bits_per_pixel / 8 + 1];
+			b = game->bmp.addr[y * game->bmp.line_length + x
+				* game->bmp.bits_per_pixel / 8 + 2];
 			write(fd, &r, 1);
 			write(fd, &g, 1);
 			write(fd, &b, 1);
@@ -86,11 +86,12 @@ static void	fill_bitmap(t_frame *game, int fd)
 	}
 }
 
-void		create_bitmap(t_frame *game)
+void	create_bitmap(t_frame *game)
 {
 	int	fd;
 
-	if ((fd = open("screenshot.bmp", O_CREAT | O_RDWR, S_IRUSR | S_IWUSR)) < 0)
+	fd = open("screenshot.bmp", O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
+	if (fd < 0)
 	{
 		ft_printf("Can't open output file for screenshot. Exiting...\n");
 		clean_exit(game);

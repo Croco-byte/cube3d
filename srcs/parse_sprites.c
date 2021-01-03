@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:44:00 by user42            #+#    #+#             */
-/*   Updated: 2020/12/31 13:03:47 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:09:26 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_s_tex(t_frame *game, char *line, int i)
 {
-	int length;
+	int	length;
 
 	if (game->paths.spath != 0)
 	{
@@ -31,7 +31,7 @@ void	get_s_tex(t_frame *game, char *line, int i)
 
 void	get_s2_tex(t_frame *game, char *line, int i)
 {
-	int length;
+	int	length;
 
 	if (game->paths.s2path != 0)
 	{
@@ -48,7 +48,7 @@ void	get_s2_tex(t_frame *game, char *line, int i)
 
 void	get_s3_tex(t_frame *game, char *line, int i)
 {
-	int length;
+	int	length;
 
 	if (game->paths.s3path != 0)
 	{
@@ -65,7 +65,7 @@ void	get_s3_tex(t_frame *game, char *line, int i)
 
 void	get_s4_tex(t_frame *game, char *line, int i)
 {
-	int length;
+	int	length;
 
 	if (game->paths.s4path != 0)
 	{

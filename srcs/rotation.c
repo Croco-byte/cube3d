@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 15:03:56 by user42            #+#    #+#             */
-/*   Updated: 2020/12/27 15:09:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:17:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	rotate_left(t_frame *game)
 	double	old_dirx;
 	double	old_planex;
 
-	old_dirx = game->player.dirX;
-	game->player.dirX = game->player.dirX * cos(game->player.rotSpeed) -
-						game->player.dirY * sin(game->player.rotSpeed);
-	game->player.dirY = old_dirx * sin(game->player.rotSpeed) +
-						game->player.dirY * cos(game->player.rotSpeed);
-	old_planex = game->player.planeX;
-	game->player.planeX = game->player.planeX * cos(game->player.rotSpeed) -
-							game->player.planeY * sin(game->player.rotSpeed);
-	game->player.planeY = old_planex * sin(game->player.rotSpeed) +
-							game->player.planeY * cos(game->player.rotSpeed);
+	old_dirx = game->player.dirx;
+	game->player.dirx = game->player.dirx * cos(game->player.rotspeed)
+		- game->player.diry * sin(game->player.rotspeed);
+	game->player.diry = old_dirx * sin(game->player.rotspeed)
+		+ game->player.diry * cos(game->player.rotspeed);
+	old_planex = game->player.planex;
+	game->player.planex = game->player.planex * cos(game->player.rotspeed)
+		- game->player.planey * sin(game->player.rotspeed);
+	game->player.planey = old_planex * sin(game->player.rotspeed)
+		+ game->player.planey * cos(game->player.rotspeed);
 }
 
 void	rotate_right(t_frame *game)
@@ -34,14 +34,14 @@ void	rotate_right(t_frame *game)
 	double	old_dirx;
 	double	old_planex;
 
-	old_dirx = game->player.dirX;
-	game->player.dirX = game->player.dirX * cos(-game->player.rotSpeed) -
-						game->player.dirY * sin(-game->player.rotSpeed);
-	game->player.dirY = old_dirx * sin(-game->player.rotSpeed) +
-						game->player.dirY * cos(-game->player.rotSpeed);
-	old_planex = game->player.planeX;
-	game->player.planeX = game->player.planeX * cos(-game->player.rotSpeed) -
-							game->player.planeY * sin(-game->player.rotSpeed);
-	game->player.planeY = old_planex * sin(-game->player.rotSpeed) +
-							game->player.planeY * cos(-game->player.rotSpeed);
+	old_dirx = game->player.dirx;
+	game->player.dirx = game->player.dirx * cos(-game->player.rotspeed)
+		- game->player.diry * sin(-game->player.rotspeed);
+	game->player.diry = old_dirx * sin(-game->player.rotspeed)
+		+ game->player.diry * cos(-game->player.rotspeed);
+	old_planex = game->player.planex;
+	game->player.planex = game->player.planex * cos(-game->player.rotspeed)
+		- game->player.planey * sin(-game->player.rotspeed);
+	game->player.planey = old_planex * sin(-game->player.rotspeed)
+		+ game->player.planey * cos(-game->player.rotspeed);
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/17 16:46:14 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 16:37:57 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 15:29:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define ARR_LEFT 65361
 # define ARR_RIGHT 65363
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void		*img;
 	char		*addr;
@@ -39,64 +39,64 @@ typedef struct	s_img
 	int			endian;
 }				t_img;
 
-typedef struct	s_player
+typedef struct s_player
 {
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-	double		moveSpeed;
-	double		rotSpeed;
-	int			moveForward;
-	int			moveBack;
-	int			moveLeft;
-	int			moveRight;
-	int			rotateLeft;
-	int			rotateRight;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
+	double		movespeed;
+	double		rotspeed;
+	int			moveforward;
+	int			moveback;
+	int			moveleft;
+	int			moveright;
+	int			rotateleft;
+	int			rotateright;
 }				t_player;
 
-typedef struct	s_textures
+typedef struct s_textures
 {
 	t_img		north;
 	t_img		south;
 	t_img		west;
 	t_img		east;
-	int			*northTex;
-	int			*southTex;
-	int			*westTex;
-	int			*eastTex;
-	int			texWidth;
-	int			texHeight;
+	int			*northtex;
+	int			*southtex;
+	int			*westtex;
+	int			*easttex;
+	int			texwidth;
+	int			texheight;
 }				t_textures;
 
-typedef struct	s_spriteLoc
+typedef struct s_spriteloc
 {
 	double		x;
 	double		y;
-	int			sprTex;
-}				t_spriteLoc;
+	int			sprtex;
+}				t_spriteloc;
 
-typedef struct	s_sprites
+typedef struct s_sprites
 {
 	t_img		sprite1;
 	t_img		sprite2;
 	t_img		sprite3;
 	t_img		sprite4;
-	int			*sprite1Tex;
-	int			*sprite2Tex;
-	int			*sprite3Tex;
-	int			*sprite4Tex;
-	int			texWidth;
-	int			texHeight;
-	int			numSprites;
-	int			*spriteOrder;
-	double		*spriteDist;
-	t_spriteLoc	*spr;
+	int			*sprite1tex;
+	int			*sprite2tex;
+	int			*sprite3tex;
+	int			*sprite4tex;
+	int			texwidth;
+	int			texheight;
+	int			numsprites;
+	int			*spriteorder;
+	double		*spritedist;
+	t_spriteloc	*spr;
 }				t_sprites;
 
-typedef struct	s_paths
+typedef struct s_paths
 {
 	char		*nopath;
 	char		*sopath;
@@ -108,16 +108,16 @@ typedef struct	s_paths
 	char		*s4path;
 }				t_paths;
 
-typedef struct	s_frame
+typedef struct s_frame
 {
 	void		*mlx;
 	void		*win;
-	int			screenWidth2;
-	int			screenHeight2;
+	int			screenwidth;
+	int			screenheight;
 	int			ceiling;
 	int			floor;
 	int			**buffer;
-	double		*ZBuffer;
+	double		*zbuffer;
 	char		**worldmap2;
 	int			nboflines;
 	t_player	player;
@@ -127,56 +127,55 @@ typedef struct	s_frame
 	t_img		bmp;
 }				t_frame;
 
-typedef struct	s_raycast
+typedef struct s_raycast
 {
-	double		cameraX;
-	double		rayDirX;
-	double		rayDirY;
-	int			mapX;
-	int			mapY;
-	double		sideDistX;
-	double		sideDistY;
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
-	int			stepX;
-	int			stepY;
+	double		camerax;
+	double		raydirx;
+	double		raydiry;
+	int			mapx;
+	int			mapy;
+	double		sidedistx;
+	double		sidedisty;
+	double		deltadistx;
+	double		deltadisty;
+	double		perpwalldist;
+	int			stepx;
+	int			stepy;
 	int			hit;
 	int			side;
-	int			lineHeight;
-	int			drawStart;
-	int			drawEnd;
-	double		wallX;
-	int			texX;
-	int			texY;
+	int			lineheight;
+	int			drawstart;
+	int			drawend;
+	double		wallx;
+	int			texx;
+	int			texy;
 	double		step;
-	double		texPos;
+	double		texpos;
 	int			color;
 }				t_raycast;
 
-typedef struct	s_sprutils
+typedef struct s_sprutils
 {
-	double		spriteX;
-	double		spriteY;
-	double		invDet;
-	double		transformX;
-	double		transformY;
-	int			spriteScreenX;
-	int			spriteHeight;
-	int			spriteWidth;
-	int			drawStartY;
-	int			drawEndY;
-	int			drawStartX;
-	int			drawEndX;
-	int			texX;
-	int			texY;
+	double		spritex;
+	double		spritey;
+	double		invdet;
+	double		transformx;
+	double		transformy;
+	int			spritescreenx;
+	int			spriteheight;
+	int			spritewidth;
+	int			drawstarty;
+	int			drawendy;
+	int			drawstartx;
+	int			drawendx;
+	int			texx;
+	int			texy;
 	int			d;
 	int			color;
 }				t_sprutils;
 
 void			init_game(t_frame *game);
 void			init_player(t_frame *game);
-void			init_worldMap(t_frame *game);
 void			allocate_buffers(t_frame *game);
 void			init_buffer(t_frame *game);
 void			load(t_frame *game, t_textures *textures, t_sprites *sprites);
@@ -188,7 +187,7 @@ void			dda_preparations(t_frame *game, t_raycast *raycaster);
 void			dda_perform(t_frame *game, t_raycast *raycaster);
 void			calc_draw_coordinates(t_frame *game, t_raycast *raycaster);
 void			calc_texture_coordinates(t_frame *game, t_raycast *raycaster);
-void			draw_stripe_in_buffer(t_frame *game, t_raycast *raycaster, int x);
+void			draw_stripe_buffer(t_frame *game, t_raycast *raycaster, int x);
 void			put_buffer_in_image(t_frame *game, t_img *render);
 
 void			do_sprites(t_frame *game);
@@ -196,14 +195,14 @@ void			init_sprarray(t_frame *game);
 void			init_sprutils(t_frame *game, t_sprutils *sprutils, int i);
 void			spr_coordinates(t_frame *game, t_sprutils *sprutils);
 void			spr_draw(t_frame *game, t_sprutils *sprutils, int i);
-void			draw_vert_spr(t_frame *game, t_sprutils *sprutils, int i, int stripe);
+void			ver_spr(t_frame *game, t_sprutils *sprutils, int i, int stripe);
 void			choose_sprite(t_frame *game, t_sprutils *sprutils, int i);
 
 int				rgb_to_int(int t, int r, int g, int b);
 int				trgb_to_values(int trgb, char c);
 
 void			draw_in_image(t_img *img, int x, int y, int color);
-void			sort_sprites(double *spriteDist, int *spriteOrder, int size);
+void			sort_sprites(double *spritedist, int *spriteorder, int size);
 
 void			free_game_buffer(t_frame *game);
 void			free_game_worldmap(t_frame *game);
@@ -255,10 +254,3 @@ int				is_map_char(char c);
 void			create_bitmap(t_frame *game);
 
 #endif
-
-
-/* TODO :
-+ revoir clean_exit pour bien tout libérer dans tous les cas
-+ revoir les key bindings
-+ norme
-+ revoir les conditions de création de l'image bitmap */

@@ -6,15 +6,15 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 12:45:14 by user42            #+#    #+#             */
-/*   Updated: 2020/11/19 14:37:08 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 15:52:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		result_size(int n)
+static int	result_size(int n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n < 0)
@@ -27,24 +27,28 @@ static int		result_size(int n)
 	return (count);
 }
 
-static char		*case_of_zero(void)
+static char	*case_of_zero(void)
 {
-	char *result;
+	char	*result;
 
-	if (!(result = malloc(2 * sizeof(char))))
+	result = malloc(2 * sizeof(char));
+	if (!result)
 		return (0);
 	result[0] = '0';
 	result[1] = '\0';
 	return (result);
 }
 
-static void		reverse_result(char *result)
+static void	reverse_result(char *result)
 {
 	int		i;
 	int		j;
 	char	temp;
 
-	i = (result[0] == '-') ? 1 : 0;
+	if (result[0] == '-')
+		i = 1;
+	else
+		i = 0;
 	j = ft_strlen(result) - 1;
 	while (i < j)
 	{
@@ -56,7 +60,7 @@ static void		reverse_result(char *result)
 	}
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	long	nbr;
 	int		i;
@@ -66,7 +70,8 @@ char			*ft_itoa(int n)
 	i = 0;
 	if (n == 0)
 		return (case_of_zero());
-	if (!(result = malloc((result_size(n) + 1) * sizeof(char))))
+	result = malloc((result_size(n) + 1) *sizeof(char));
+	if (!result)
 		return (0);
 	if (nbr < 0)
 	{

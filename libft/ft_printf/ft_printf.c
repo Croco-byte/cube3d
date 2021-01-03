@@ -6,15 +6,15 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 14:46:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 13:12:54 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:18:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int				print_conv(t_attr tmp, va_list argmt)
+int	print_conv(t_attr tmp, va_list argmt)
 {
-	int char_nb;
+	int	char_nb;
 
 	char_nb = 0;
 	if (tmp.type == 'c')
@@ -34,7 +34,7 @@ int				print_conv(t_attr tmp, va_list argmt)
 	return (char_nb);
 }
 
-int				ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	int				i;
 	va_list			argmt;

@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/08 14:12:57 by user42            #+#    #+#              #
-#    Updated: 2020/12/26 14:45:59 by user42           ###   ########.fr        #
+#    Updated: 2021/01/03 16:16:18 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM = rm -f
 
 SRCS = flag_parse.c ft_printf.c ft_itoa_dot.c ft_un_itoa_dot.c ft_un_itoa_base_dot.c \
 		ft_ptr_itoa_dot.c handle_char.c handle_int.c handle_p.c handle_str.c handle_u.c\
-		handle_x.c utilities.c handle_percent.c
+		handle_x.c utilities.c handle_percent.c utilities2.c
 
 OBJS = ${SRCS:.c=.o}
 

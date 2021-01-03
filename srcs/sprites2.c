@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 15:10:59 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 16:57:09 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 15:29:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,73 +14,69 @@
 
 void	init_sprutils(t_frame *game, t_sprutils *sprutils, int i)
 {
-	sprutils->spriteX = game->sprites.spr[game->sprites.spriteOrder[i]].x -
-						game->player.posX;
-	sprutils->spriteY = game->sprites.spr[game->sprites.spriteOrder[i]].y -
-						game->player.posY;
-	sprutils->invDet = 1.0 / (game->player.planeX * game->player.dirY -
-							game->player.dirX * game->player.planeY);
-	sprutils->transformX = sprutils->invDet * (game->player.dirY *
-					sprutils->spriteX - game->player.dirX * sprutils->spriteY);
-	sprutils->transformY = sprutils->invDet * (-game->player.planeY *
-				sprutils->spriteX + game->player.planeX * sprutils->spriteY);
-	sprutils->spriteScreenX = (int)((game->screenWidth2 / 2) *
-							(1 + sprutils->transformX / sprutils->transformY));
-	sprutils->spriteHeight =
-		abs((int)(game->screenHeight2 / (sprutils->transformY)));
+	sprutils->spritex = game->sprites.spr[game->sprites.spriteorder[i]].x
+		- game->player.posx;
+	sprutils->spritey = game->sprites.spr[game->sprites.spriteorder[i]].y
+		- game->player.posy;
+	sprutils->invdet = 1.0 / (game->player.planex * game->player.diry
+			- game->player.dirx * game->player.planey);
+	sprutils->transformx = sprutils->invdet * (game->player.diry
+			* sprutils->spritex - game->player.dirx * sprutils->spritey);
+	sprutils->transformy = sprutils->invdet * (-game->player.planey
+			* sprutils->spritex + game->player.planex * sprutils->spritey);
+	sprutils->spritescreenx = (int)((game->screenwidth / 2)
+			*(1 + sprutils->transformx / sprutils->transformy));
+	sprutils->spriteheight = abs((int)(game->screenheight / (sprutils->transformy)));
 }
 
 void	spr_coordinates(t_frame *game, t_sprutils *sprutils)
 {
-	sprutils->drawStartY =
-		-sprutils->spriteHeight / 2 + game->screenHeight2 / 2;
-	if (sprutils->drawStartY < 0)
-		sprutils->drawStartY = 0;
-	sprutils->drawEndY = sprutils->spriteHeight / 2 + game->screenHeight2 / 2;
-	if (sprutils->drawEndY >= game->screenHeight2)
-		sprutils->drawEndY = game->screenHeight2 - 1;
-	sprutils->spriteWidth =
-		abs((int)(game->screenHeight2 / (sprutils->transformY)));
-	sprutils->drawStartX = -sprutils->spriteWidth / 2 +
-							sprutils->spriteScreenX;
-	if (sprutils->drawStartX < 0)
-		sprutils->drawStartX = 0;
-	sprutils->drawEndX = sprutils->spriteWidth / 2 + sprutils->spriteScreenX;
-	if (sprutils->drawEndX >= game->screenWidth2)
-		sprutils->drawEndX = game->screenWidth2 - 1;
+	sprutils->drawstarty = -sprutils->spriteheight / 2 + game->screenheight / 2;
+	if (sprutils->drawstarty < 0)
+		sprutils->drawstarty = 0;
+	sprutils->drawendy = sprutils->spriteheight / 2 + game->screenheight / 2;
+	if (sprutils->drawendy >= game->screenheight)
+		sprutils->drawendy = game->screenheight - 1;
+	sprutils->spritewidth = abs((int)(game->screenheight / (sprutils->transformy)));
+	sprutils->drawstartx = -sprutils->spritewidth / 2 + sprutils->spritescreenx;
+	if (sprutils->drawstartx < 0)
+		sprutils->drawstartx = 0;
+	sprutils->drawendx = sprutils->spritewidth / 2 + sprutils->spritescreenx;
+	if (sprutils->drawendx >= game->screenwidth)
+		sprutils->drawendx = game->screenwidth - 1;
 }
 
 void	choose_sprite(t_frame *game, t_sprutils *sprutils, int i)
 {
-	if (game->sprites.spr[game->sprites.spriteOrder[i]].sprTex == 2)
-		sprutils->color = game->sprites.sprite1Tex
-		[game->sprites.texWidth * sprutils->texY + sprutils->texX];
-	if (game->sprites.spr[game->sprites.spriteOrder[i]].sprTex == 3)
-		sprutils->color = game->sprites.sprite2Tex
-		[game->sprites.texWidth * sprutils->texY + sprutils->texX];
-	if (game->sprites.spr[game->sprites.spriteOrder[i]].sprTex == 4)
-		sprutils->color = game->sprites.sprite3Tex
-		[game->sprites.texWidth * sprutils->texY + sprutils->texX];
-	if (game->sprites.spr[game->sprites.spriteOrder[i]].sprTex == 5)
-		sprutils->color = game->sprites.sprite4Tex
-		[game->sprites.texWidth * sprutils->texY + sprutils->texX];
+	if (game->sprites.spr[game->sprites.spriteorder[i]].sprtex == 2)
+		sprutils->color = game->sprites.sprite1tex
+			[game->sprites.texwidth * sprutils->texy + sprutils->texx];
+	if (game->sprites.spr[game->sprites.spriteorder[i]].sprtex == 3)
+		sprutils->color = game->sprites.sprite2tex
+			[game->sprites.texwidth * sprutils->texy + sprutils->texx];
+	if (game->sprites.spr[game->sprites.spriteorder[i]].sprtex == 4)
+		sprutils->color = game->sprites.sprite3tex
+			[game->sprites.texwidth * sprutils->texy + sprutils->texx];
+	if (game->sprites.spr[game->sprites.spriteorder[i]].sprtex == 5)
+		sprutils->color = game->sprites.sprite4tex
+			[game->sprites.texwidth * sprutils->texy + sprutils->texx];
 }
 
-void	draw_vert_spr(t_frame *game, t_sprutils *sprutils, int i, int stripe)
+void	ver_spr(t_frame *game, t_sprutils *sprutils, int i, int stripe)
 {
-	int y;
+	int	y;
 
-	y = sprutils->drawStartY;
-	while (y < sprutils->drawEndY)
+	y = sprutils->drawstarty;
+	while (y < sprutils->drawendy)
 	{
-		sprutils->d = (y) * 256 - game->screenHeight2 * 128 +
-					sprutils->spriteHeight * 128;
-		sprutils->texY = ((sprutils->d * game->sprites.texHeight) /
-						sprutils->spriteHeight) / 256;
+		sprutils->d = (y) * 256 - game->screenheight * 128
+			+ sprutils->spriteheight * 128;
+		sprutils->texy = ((sprutils->d * game->sprites.texheight)
+				/ sprutils->spriteheight) / 256;
 		sprutils->color = 0;
 		choose_sprite(game, sprutils, i);
-		if ((sprutils->color & 0x00FFFFFF) != 0 &&
-		(sprutils->color & 0x0067FF77) != 0)
+		if ((sprutils->color & 0x00FFFFFF) != 0
+			&& (sprutils->color & 0x0067FF77) != 0)
 			game->buffer[y][stripe] = sprutils->color;
 		y++;
 	}
@@ -88,19 +84,19 @@ void	draw_vert_spr(t_frame *game, t_sprutils *sprutils, int i, int stripe)
 
 void	spr_draw(t_frame *game, t_sprutils *sprutils, int i)
 {
-	int stripe;
+	int	stripe;
 
-	stripe = sprutils->drawStartX;
-	while (stripe < sprutils->drawEndX)
+	stripe = sprutils->drawstartx;
+	while (stripe < sprutils->drawendx)
 	{
-		sprutils->texX = (int)(256 * (stripe - (-sprutils->spriteWidth / 2
-		+ sprutils->spriteScreenX)) * game->sprites.texWidth /
-		sprutils->spriteWidth) / 256;
-		if (sprutils->transformY > 0 && stripe > 0
-							&& stripe < game->screenWidth2
-							&& sprutils->transformY < game->ZBuffer[stripe])
+		sprutils->texx = (int)(256 * (stripe - (-sprutils->spritewidth / 2
+						+ sprutils->spritescreenx)) * game->sprites.texwidth
+				/ sprutils->spritewidth) / 256;
+		if (sprutils->transformy > 0 && stripe > 0
+			&& stripe < game->screenwidth
+			&& sprutils->transformy < game->zbuffer[stripe])
 		{
-			draw_vert_spr(game, sprutils, i, stripe);
+			ver_spr(game, sprutils, i, stripe);
 		}
 		stripe++;
 	}

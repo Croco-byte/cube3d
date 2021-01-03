@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 11:49:40 by user42            #+#    #+#             */
-/*   Updated: 2020/11/21 15:45:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:59:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static char	**realloc_tab(char **tab, char *str)
 	i = 0;
 	while (tab[i])
 		i++;
-	if ((nouveau_tab = malloc(sizeof(char*) * (i + 1 + 1))) == 0)
+	nouveau_tab = malloc(sizeof(char*) * (i + 1 + 1));
+	if (!nouveau_tab)
 		return (0);
 	i = 0;
 	while (tab[i])
@@ -36,7 +37,7 @@ static char	**realloc_tab(char **tab, char *str)
 
 static void	free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
@@ -55,7 +56,8 @@ static char	*extract_word(const char *s, char c, size_t *index)
 	j = 0;
 	while (s[*index + j] && s[*index + j] != c)
 		j++;
-	if ((str = (char *)malloc(sizeof(char) * (j + 1))) == 0)
+	str = (char *)malloc(sizeof(char) * (j + 1));
+	if (!str)
 		return (0);
 	j = 0;
 	while (s[*index + j] && s[*index + j] != c)
@@ -68,7 +70,16 @@ static char	*extract_word(const char *s, char c, size_t *index)
 	return (str);
 }
 
-char		**ft_split(char const *s, char c)
+int	initialize(char **tab, size_t *i)
+{
+	*i = 0;
+	if (!tab)
+		return (0);
+	tab[0] = 0;
+	return (1);
+}
+
+char	**ft_split(char const *s, char c)
 {
 	char	**tab;
 	char	*str;
@@ -76,17 +87,17 @@ char		**ft_split(char const *s, char c)
 
 	if (!s)
 		return (0);
-	if ((tab = (char **)malloc(sizeof(char *) * 1)) == 0)
+	tab = (char **)malloc(sizeof(char *) * 1);
+	if (!initialize(tab, &i))
 		return (0);
-	tab[0] = 0;
-	i = 0;
 	while (s[i])
 	{
 		if (s[i] == c)
 			i++;
 		else
 		{
-			if ((str = extract_word(s, c, &i)) == 0)
+			str = extract_word(s, c, &i);
+			if (!str)
 			{
 				free_tab(tab);
 				return (0);

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 09:34:15 by user42            #+#    #+#             */
-/*   Updated: 2020/11/19 14:37:34 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 15:53:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstadd_back(t_list **alst, t_list *new)
 {
-	t_list *last;
+	t_list	*last;
 
 	if (!alst)
 		return ;

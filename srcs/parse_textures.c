@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/30 16:41:09 by user42            #+#    #+#             */
-/*   Updated: 2020/12/31 13:04:05 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:09:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	get_no_tex(t_frame *game, char *line, int i)
 {
-	int length;
+	int	length;
 
 	if (game->paths.nopath != 0)
 	{
@@ -31,7 +31,7 @@ void	get_no_tex(t_frame *game, char *line, int i)
 
 void	get_so_tex(t_frame *game, char *line, int i)
 {
-	int length;
+	int	length;
 
 	if (game->paths.sopath != 0)
 	{
@@ -48,7 +48,7 @@ void	get_so_tex(t_frame *game, char *line, int i)
 
 void	get_we_tex(t_frame *game, char *line, int i)
 {
-	int length;
+	int	length;
 
 	if (game->paths.wepath != 0)
 	{
@@ -65,7 +65,7 @@ void	get_we_tex(t_frame *game, char *line, int i)
 
 void	get_ea_tex(t_frame *game, char *line, int i)
 {
-	int length;
+	int	length;
 
 	if (game->paths.eapath != 0)
 	{

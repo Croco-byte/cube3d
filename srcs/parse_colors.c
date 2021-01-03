@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/31 11:39:19 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 16:57:24 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:07:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	get_color(char *line, int *i)
 {
-	int color;
+	int	color;
 
 	color = 0;
 	while (line[*i] && ft_isdigit(line[*i]))
@@ -26,11 +26,11 @@ static int	get_color(char *line, int *i)
 	return (color);
 }
 
-int			parse_color(char *line, int i)
+int	parse_color(char *line, int i)
 {
-	int r;
-	int g;
-	int b;
+	int	r;
+	int	g;
+	int	b;
 
 	r = 0;
 	g = 0;

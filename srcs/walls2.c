@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 14:52:46 by user42            #+#    #+#             */
-/*   Updated: 2021/01/02 16:55:38 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 15:27:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,65 +15,64 @@
 void	calc_draw_coordinates(t_frame *game, t_raycast *raycaster)
 {
 	if (raycaster->side == 0)
-		raycaster->perpWallDist = (raycaster->mapX - game->player.posX +
-		(1 - raycaster->stepX) / 2) / raycaster->rayDirX;
+		raycaster->perpwalldist = (raycaster->mapx - game->player.posx
+				+ (1 - raycaster->stepx) / 2) / raycaster->raydirx;
 	else
-		raycaster->perpWallDist = (raycaster->mapY - game->player.posY +
-		(1 - raycaster->stepY) / 2) / raycaster->rayDirY;
-	raycaster->lineHeight = (int)(game->screenHeight2 /
-		raycaster->perpWallDist);
-	raycaster->drawStart = -raycaster->lineHeight / 2 + game->screenHeight2 / 2;
-	if (raycaster->drawStart < 0)
-		raycaster->drawStart = 0;
-	raycaster->drawEnd = raycaster->lineHeight / 2 + game->screenHeight2 / 2;
-	if (raycaster->drawEnd >= game->screenHeight2)
-		raycaster->drawEnd = game->screenHeight2 - 1;
+		raycaster->perpwalldist = (raycaster->mapy - game->player.posy
+				+ (1 - raycaster->stepy) / 2) / raycaster->raydiry;
+	raycaster->lineheight = (int)(game->screenheight
+			/ raycaster->perpwalldist);
+	raycaster->drawstart = -raycaster->lineheight / 2 + game->screenheight / 2;
+	if (raycaster->drawstart < 0)
+		raycaster->drawstart = 0;
+	raycaster->drawend = raycaster->lineheight / 2 + game->screenheight / 2;
+	if (raycaster->drawend >= game->screenheight)
+		raycaster->drawend = game->screenheight - 1;
 }
 
 void	calc_texture_coordinates(t_frame *game, t_raycast *raycaster)
 {
 	if (raycaster->side == 0)
-		raycaster->wallX =
-		game->player.posY + raycaster->perpWallDist * raycaster->rayDirY;
+		raycaster->wallx = game->player.posy
+			+ raycaster->perpwalldist * raycaster->raydiry;
 	else
-		raycaster->wallX =
-		game->player.posX + raycaster->perpWallDist * raycaster->rayDirX;
-	raycaster->wallX -= floor((raycaster->wallX));
-	raycaster->texX =
-	(int)(raycaster->wallX * (double)(game->textures.texWidth));
-	if (raycaster->side == 0 && raycaster->rayDirX > 0)
-		raycaster->texX = game->textures.texWidth - raycaster->texX - 1;
-	if (raycaster->side == 1 && raycaster->rayDirY < 0)
-		raycaster->texX = game->textures.texWidth - raycaster->texX - 1;
-	raycaster->step = 1.0 * game->textures.texHeight / raycaster->lineHeight;
-	raycaster->texPos =
-	(raycaster->drawStart - game->screenHeight2 / 2 + raycaster->lineHeight / 2)
-	* raycaster->step;
+		raycaster->wallx = game->player.posx
+			+ raycaster->perpwalldist * raycaster->raydirx;
+	raycaster->wallx -= floor((raycaster->wallx));
+	raycaster->texx = (int)(raycaster->wallx * (double)(game->textures.texwidth));
+	if (raycaster->side == 0 && raycaster->raydirx > 0)
+		raycaster->texx = game->textures.texwidth - raycaster->texx - 1;
+	if (raycaster->side == 1 && raycaster->raydiry < 0)
+		raycaster->texx = game->textures.texwidth - raycaster->texx - 1;
+	raycaster->step = 1.0 * game->textures.texheight / raycaster->lineheight;
+	raycaster->texpos = (raycaster->drawstart - game->screenheight
+			/ 2 + raycaster->lineheight / 2)
+		* raycaster->step;
 }
 
-void	draw_stripe_in_buffer(t_frame *game, t_raycast *raycaster, int x)
+void	draw_stripe_buffer(t_frame *game, t_raycast *raycaster, int x)
 {
-	int y;
+	int	y;
 
-	y = raycaster->drawStart;
-	while (y++ < raycaster->drawEnd)
+	y = raycaster->drawstart;
+	while (y++ < raycaster->drawend)
 	{
-		raycaster->texY = (int)raycaster->texPos
-		& (game->textures.texHeight - 1);
-		raycaster->texPos += raycaster->step;
+		raycaster->texy = (int)raycaster->texpos
+			& (game->textures.texheight - 1);
+		raycaster->texpos += raycaster->step;
 		raycaster->color = 0;
-		if (raycaster->side == 1 && game->player.posY > raycaster->mapY)
-			raycaster->color = game->textures.westTex
-			[game->textures.texHeight * raycaster->texY + raycaster->texX];
-		else if (raycaster->side == 1 && game->player.posY < raycaster->mapY)
-			raycaster->color = game->textures.eastTex
-			[game->textures.texHeight * raycaster->texY + raycaster->texX];
-		else if (raycaster->side == 0 && game->player.posX > raycaster->mapX)
-			raycaster->color = game->textures.northTex
-			[game->textures.texHeight * raycaster->texY + raycaster->texX];
-		else if (raycaster->side == 0 && game->player.posX < raycaster->mapX)
-			raycaster->color = game->textures.southTex
-			[game->textures.texHeight * raycaster->texY + raycaster->texX];
+		if (raycaster->side == 1 && game->player.posy > raycaster->mapy)
+			raycaster->color = game->textures.westtex
+				[game->textures.texheight * raycaster->texy + raycaster->texx];
+		else if (raycaster->side == 1 && game->player.posy < raycaster->mapy)
+			raycaster->color = game->textures.easttex
+				[game->textures.texheight * raycaster->texy + raycaster->texx];
+		else if (raycaster->side == 0 && game->player.posx > raycaster->mapx)
+			raycaster->color = game->textures.northtex
+				[game->textures.texheight * raycaster->texy + raycaster->texx];
+		else if (raycaster->side == 0 && game->player.posx < raycaster->mapx)
+			raycaster->color = game->textures.southtex
+				[game->textures.texheight * raycaster->texy + raycaster->texx];
 		if (raycaster->side == 1)
 			raycaster->color = (raycaster->color >> 1) & 8355711;
 		game->buffer[y][x] = raycaster->color;

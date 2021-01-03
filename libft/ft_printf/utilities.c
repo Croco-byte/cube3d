@@ -6,20 +6,20 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/03 16:09:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 13:24:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:49:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		is_flag(char c)
+int	is_flag(char c)
 {
 	if (c == '-' || c == '0' || c == '*' || c == '.')
 		return (1);
 	return (0);
 }
 
-int		is_type(char c)
+int	is_type(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p'
 		|| c == 'd' || c == 'i' || c == 'u'
@@ -30,7 +30,7 @@ int		is_type(char c)
 
 t_attr	new_attr(void)
 {
-	t_attr new;
+	t_attr	new;
 
 	new.minus = 0;
 	new.zeros = 0;
@@ -41,9 +41,9 @@ t_attr	new_attr(void)
 	return (new);
 }
 
-int		itoa_size_base(long n, int base_size)
+int	itoa_size_base(long n, int base_size)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (n)
@@ -54,9 +54,9 @@ int		itoa_size_base(long n, int base_size)
 	return (count);
 }
 
-int		itoa_un_size_base(unsigned int n, int base_size)
+int	itoa_un_size_base(unsigned int n, int base_size)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (n)

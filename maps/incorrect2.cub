@@ -1,7 +1,5 @@
 R 640 480 
 
-NO ./textures/Gold1.xpm
-SO ./textures/Gold0.xpm
 WE ./textures/GemOv1.xpm
 EA ./textures/TreeRings.xpm    
 

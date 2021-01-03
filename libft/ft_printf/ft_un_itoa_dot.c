@@ -6,15 +6,15 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/06 15:26:19 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 13:18:03 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:32:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static int		result_size(unsigned int n, t_attr tmp)
+static int	result_size(unsigned int n, t_attr tmp)
 {
-	int count;
+	int	count;
 
 	count = itoa_un_size_base(n, 10);
 	if (tmp.dot > count)
@@ -24,7 +24,7 @@ static int		result_size(unsigned int n, t_attr tmp)
 	return (count);
 }
 
-static char		*case_of_zero(t_attr tmp)
+static char	*case_of_zero(t_attr tmp)
 {
 	char	*result;
 	int		count;
@@ -34,7 +34,8 @@ static char		*case_of_zero(t_attr tmp)
 	count = 1;
 	if (tmp.dot > count)
 		count += (tmp.dot - count);
-	if (!(result = malloc((count + 1) * sizeof(char))))
+	result = malloc((count + 1) *sizeof(char));
+	if (!result)
 		return (0);
 	if (tmp.dot > 1)
 	{
@@ -50,7 +51,7 @@ static char		*case_of_zero(t_attr tmp)
 	return (result);
 }
 
-static void		reverse_result(char *result)
+static void	reverse_result(char *result)
 {
 	int		i;
 	int		j;
@@ -68,10 +69,10 @@ static void		reverse_result(char *result)
 	}
 }
 
-static void		handle_prec(unsigned int n, char *result, int *i, t_attr tmp)
+static void	handle_prec(unsigned int n, char *result, int *i, t_attr tmp)
 {
-	int k;
-	int count;
+	int	k;
+	int	count;
 
 	count = itoa_un_size_base(n, 10);
 	k = 0;
@@ -86,7 +87,7 @@ static void		handle_prec(unsigned int n, char *result, int *i, t_attr tmp)
 	}
 }
 
-char			*ft_un_itoa_dot(unsigned int n, t_attr tmp)
+char	*ft_un_itoa_dot(unsigned int n, t_attr tmp)
 {
 	long	nbr;
 	int		i;
@@ -96,7 +97,8 @@ char			*ft_un_itoa_dot(unsigned int n, t_attr tmp)
 	i = 0;
 	if (n == 0)
 		return (case_of_zero(tmp));
-	if (!(result = malloc((result_size(n, tmp) + 1) * sizeof(char))))
+	result = malloc((result_size(n, tmp) + 1) *sizeof(char));
+	if (!result)
 		return (0);
 	while (nbr)
 	{

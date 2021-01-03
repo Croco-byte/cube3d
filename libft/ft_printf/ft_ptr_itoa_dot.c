@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prt_itoa_dot.c                                  :+:      :+:    :+:   */
+/*   ft_ptr_itoa_dot.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/07 11:39:44 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 13:14:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:54:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static int		result_size(long n, t_attr tmp)
+static int	result_size(long n, t_attr tmp)
 {
-	int count;
+	int	count;
 
 	count = itoa_size_base(n, 16);
 	if (tmp.dot > count)
@@ -24,17 +24,18 @@ static int		result_size(long n, t_attr tmp)
 	return (count);
 }
 
-static char		*case_of_zero(void)
+static char	*case_of_zero(void)
 {
 	char	*result;
 
-	if (!(result = malloc(4 * sizeof(char))))
+	result = malloc(4 * sizeof(char));
+	if (!result)
 		return (0);
 	ft_strlcpy(result, "0x0", 4);
 	return (result);
 }
 
-static void		reverse_result(char *result)
+static void	reverse_result(char *result)
 {
 	int		i;
 	int		j;
@@ -52,21 +53,21 @@ static void		reverse_result(char *result)
 	}
 }
 
-char			*ft_ptr_itoa_dot(long n, t_attr tmp)
+char	*ft_ptr_itoa_dot(long n, t_attr tmp)
 {
 	long	nbr;
 	int		i;
 	char	*result;
 	char	*base;
 
-	base = "0123456789abcdef";
-	nbr = n;
-	i = 0;
+	base = 0;
+	init(base, n, &nbr, &i);
 	if (n == 0)
 		return (case_of_zero());
-	if (!(result = malloc((result_size(n, tmp) + 1 + 2) * sizeof(char))))
+	result = malloc((result_size(n, tmp) + 1 + 2) *sizeof(char));
+	if (!result)
 		return (0);
-	nbr = (nbr < 0) ? nbr * -1 : nbr;
+	nbr = invert_negatives(nbr);
 	while (nbr)
 	{
 		result[i++] = base[nbr % 16];

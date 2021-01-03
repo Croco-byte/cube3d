@@ -6,18 +6,18 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 13:40:06 by user42            #+#    #+#             */
-/*   Updated: 2020/12/27 15:20:35 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 13:32:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		rgb_to_int(int t, int r, int g, int b)
+int	rgb_to_int(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int		trgb_to_values(int trgb, char c)
+int	trgb_to_values(int trgb, char c)
 {
 	if (c == 't')
 		return ((trgb & (0xFF << 24)) >> 24);

@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/17 15:41:38 by user42            #+#    #+#              #
-#    Updated: 2021/01/02 13:53:58 by user42           ###   ########.fr        #
+#    Updated: 2021/01/03 15:19:59 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRCS = 		srcs/main.c \
 			srcs/map_format.c \
 			srcs/map_format_utils1.c \
 			srcs/map_format_utils2.c \
-			srcs/free.c
+			srcs/free.c \
+			srcs/movement.c
 OBJS = ${SRCS:.c=.o}
 
 INC_PATH = includes

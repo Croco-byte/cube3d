@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:05:31 by user42            #+#    #+#             */
-/*   Updated: 2020/11/19 14:51:02 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 15:43:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *s)
 	char	*copy;
 
 	i = 0;
-	copy = malloc((ft_strlen(s) + 1) * sizeof(char));
+	copy = malloc((ft_strlen(s) + 1) *sizeof(char));
 	if (copy == NULL)
 		return (NULL);
 	while (s[i])

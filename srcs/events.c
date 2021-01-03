@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/18 17:15:38 by user42            #+#    #+#             */
-/*   Updated: 2020/12/27 13:13:06 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 17:12:25 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,38 @@ void	event_handler(t_frame *game)
 	mlx_hook(game->win, 3, 1L << 1, &key_release, game);
 }
 
-int		key_press(int keycode, t_frame *game)
+int	key_press(int keycode, t_frame *game)
 {
 	if (keycode == ESC_KEY)
 		clean_exit(game);
 	if (keycode == Z_KEY)
-		game->player.moveForward = 1;
+		game->player.moveforward = 1;
 	if (keycode == S_KEY)
-		game->player.moveBack = 1;
+		game->player.moveback = 1;
 	if (keycode == D_KEY)
-		game->player.moveRight = 1;
+		game->player.moveright = 1;
 	if (keycode == Q_KEY)
-		game->player.moveLeft = 1;
-	if (keycode == A_KEY)
-		game->player.rotateLeft = 1;
-	if (keycode == E_KEY)
-		game->player.rotateRight = 1;
+		game->player.moveleft = 1;
+	if (keycode == ARR_LEFT)
+		game->player.rotateleft = 1;
+	if (keycode == ARR_RIGHT)
+		game->player.rotateright = 1;
 	return (0);
 }
 
-int		key_release(int keycode, t_frame *game)
+int	key_release(int keycode, t_frame *game)
 {
 	if (keycode == Z_KEY)
-		game->player.moveForward = 0;
+		game->player.moveforward = 0;
 	if (keycode == S_KEY)
-		game->player.moveBack = 0;
+		game->player.moveback = 0;
 	if (keycode == Q_KEY)
-		game->player.moveLeft = 0;
+		game->player.moveleft = 0;
 	if (keycode == D_KEY)
-		game->player.moveRight = 0;
-	if (keycode == A_KEY)
-		game->player.rotateLeft = 0;
-	if (keycode == E_KEY)
-		game->player.rotateRight = 0;
+		game->player.moveright = 0;
+	if (keycode == ARR_LEFT)
+		game->player.rotateleft = 0;
+	if (keycode == ARR_RIGHT)
+		game->player.rotateright = 0;
 	return (0);
 }

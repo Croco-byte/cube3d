@@ -6,13 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 16:13:00 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 19:08:29 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:43:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-char			*precision_cut(char *str, t_attr tmp)
+char	*precision_cut(char *str, t_attr tmp)
 {
 	char	*new_str;
 
@@ -20,39 +20,43 @@ char			*precision_cut(char *str, t_attr tmp)
 		str = "(null)";
 	if (tmp.dot < 0 || tmp.dot >= (int)ft_strlen(str))
 	{
-		if (!(new_str = malloc(((int)ft_strlen(str) + 1) * sizeof(char))))
+		new_str = malloc(((int)ft_strlen(str) + 1) *sizeof(char));
+		if (!new_str)
 			return (0);
 		ft_strlcpy(new_str, str, (int)ft_strlen(str) + 1);
 	}
 	else
 	{
-		if (!(new_str = malloc((tmp.dot + 1) * sizeof(char))))
+		new_str = malloc((tmp.dot + 1) *sizeof(char));
+		if (!new_str)
 			return (0);
 		ft_strlcpy(new_str, str, tmp.dot + 1);
 	}
 	return (new_str);
 }
 
-static char		*create_result(t_attr tmp, int str_len)
+static char	*create_result(t_attr tmp, int str_len)
 {
-	char *result;
+	char	*result;
 
 	if (tmp.width <= str_len)
 	{
-		if (!(result = malloc((str_len + 1) * sizeof(char))))
+		result = malloc((str_len + 1) *sizeof(char));
+		if (!result)
 			return (0);
 	}
 	else
 	{
-		if (!(result = malloc((tmp.width + 1) * sizeof(char))))
+		result = malloc((tmp.width + 1) *sizeof(char));
+		if (!result)
 			return (0);
 	}
 	return (result);
 }
 
-static void		fill_right(char *str, char *result, t_attr tmp, int str_len)
+static void	fill_right(char *str, char *result, t_attr tmp, int str_len)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < tmp.width - str_len)
@@ -63,9 +67,9 @@ static void		fill_right(char *str, char *result, t_attr tmp, int str_len)
 	ft_strlcpy(result + i, str, str_len + 1);
 }
 
-static void		fill_left(char *str, char *result, t_attr tmp)
+static void	fill_left(char *str, char *result, t_attr tmp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -81,15 +85,17 @@ static void		fill_left(char *str, char *result, t_attr tmp)
 	result[i] = '\0';
 }
 
-int				handle_str(char *str, t_attr tmp)
+int	handle_str(char *str, t_attr tmp)
 {
 	int		str_len;
 	char	*result;
 
-	if (!(str = precision_cut(str, tmp)))
+	str = precision_cut(str, tmp);
+	if (!str)
 		return (0);
 	str_len = (int)ft_strlen(str);
-	if (!(result = create_result(tmp, str_len)))
+	result = create_result(tmp, str_len);
+	if (!result)
 		return (0);
 	if (tmp.width <= str_len)
 		ft_strlcpy(result, str, str_len + 1);

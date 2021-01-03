@@ -1,4 +1,4 @@
-R 640 480 
+R 0 480 
 
 NO ./textures/Gold1.xpm
 SO ./textures/Gold0.xpm

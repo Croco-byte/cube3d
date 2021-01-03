@@ -6,46 +6,52 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 13:17:42 by user42            #+#    #+#             */
-/*   Updated: 2020/12/30 16:27:04 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 14:44:18 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void		get_numsprites(t_frame *game)
+static void	get_numsprites(t_frame *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	game->sprites.numSprites = 0;
+	game->sprites.numsprites = 0;
 	while (game->worldmap2[i])
 	{
 		j = 0;
 		while (game->worldmap2[i][j])
 		{
 			if (game->worldmap2[i][j] == '2' || game->worldmap2[i][j] == '3'
-			|| game->worldmap2[i][j] == '4' || game->worldmap2[i][j] == '5')
-				game->sprites.numSprites += 1;
+				|| game->worldmap2[i][j] == '4' || game->worldmap2[i][j] == '5')
+				game->sprites.numsprites += 1;
 			j++;
 		}
 		i++;
 	}
 }
 
-static void		malloc_arrays(t_sprites *sprites)
+static void	malloc_arrays(t_sprites *sprites)
 {
-	sprites->spriteOrder = malloc((sprites->numSprites) * sizeof(int));
-	sprites->spriteDist = malloc((sprites->numSprites) * sizeof(double));
-	sprites->spr = malloc((sprites->numSprites) * sizeof(t_spriteLoc));
+	sprites->spriteorder = malloc((sprites->numsprites) *sizeof(int));
+	if (!sprites->spriteorder)
+		return ;
+	sprites->spritedist = malloc((sprites->numsprites) *sizeof(double));
+	if (!sprites->spritedist)
+		return ;
+	sprites->spr = malloc((sprites->numsprites) *sizeof(t_spriteloc));
+	if (!sprites->spr)
+		return ;
 }
 
-void			init_sprites(t_frame *game)
+void	init_sprites(t_frame *game)
 {
-	int k;
-	int i;
-	int j;
+	int	k;
+	int	i;
+	int	j;
 
 	k = 0;
 	i = 0;
@@ -57,11 +63,11 @@ void			init_sprites(t_frame *game)
 		while (game->worldmap2[i][j])
 		{
 			if (game->worldmap2[i][j] == '2' || game->worldmap2[i][j] == '3'
-			|| game->worldmap2[i][j] == '4' || game->worldmap2[i][j] == '5')
+				|| game->worldmap2[i][j] == '4' || game->worldmap2[i][j] == '5')
 			{
 				game->sprites.spr[k].x = i + 0.5;
 				game->sprites.spr[k].y = j + 0.5;
-				game->sprites.spr[k].sprTex = (int)(game->worldmap2[i][j] - 48);
+				game->sprites.spr[k].sprtex = (int)(game->worldmap2[i][j] - 48);
 				k++;
 			}
 			j++;
@@ -70,7 +76,7 @@ void			init_sprites(t_frame *game)
 	}
 }
 
-void			sort_sprites(double *spritedist, int *spriteorder, int size)
+void	sort_sprites(double *spritedist, int *spriteorder, int size)
 {
 	int		i;
 	int		j;
@@ -98,21 +104,20 @@ void			sort_sprites(double *spritedist, int *spriteorder, int size)
 	}
 }
 
-void			init_sprarray(t_frame *game)
+void	init_sprarray(t_frame *game)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	while (i < game->sprites.numSprites)
+	while (i < game->sprites.numsprites)
 	{
-		game->sprites.spriteOrder[i] = i;
-		game->sprites.spriteDist[i] =
-		((game->player.posX - game->sprites.spr[i].x) *
-		(game->player.posX - game->sprites.spr[i].x) +
-		(game->player.posY - game->sprites.spr[i].y) *
-		(game->player.posY - game->sprites.spr[i].y));
+		game->sprites.spriteorder[i] = i;
+		game->sprites.spritedist[i] = ((game->player.posx - game->sprites.spr[i].x)
+				*(game->player.posx - game->sprites.spr[i].x)
+				+ (game->player.posy - game->sprites.spr[i].y)
+				* (game->player.posy - game->sprites.spr[i].y));
 		i++;
 	}
-	sort_sprites(game->sprites.spriteDist, game->sprites.spriteOrder,
-	game->sprites.numSprites);
+	sort_sprites(game->sprites.spritedist, game->sprites.spriteorder,
+	game->sprites.numsprites);
 }

@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/16 16:29:57 by user42            #+#    #+#             */
-/*   Updated: 2020/11/20 14:31:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 15:54:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ static int	unsafe_overlap(void *dest, const void *src, size_t n)
 
 static void	reverse_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	i = n;
 	while (i--)
 		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 }
 
-void		*ft_memmove(void *dest, const void *src, size_t n)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	if (!dest || !src)
 		return (0);

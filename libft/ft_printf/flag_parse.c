@@ -6,19 +6,19 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/04 14:35:54 by user42            #+#    #+#             */
-/*   Updated: 2020/12/10 17:34:54 by user42           ###   ########.fr       */
+/*   Updated: 2021/01/03 16:11:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void			get_attr(t_attr *tmp, const char *format, int *i, va_list argmt)
+void	get_attr(t_attr *tmp, const char *format, int *i, va_list argmt)
 {
 	*i = (*i) + 1;
 	while (format[*i])
 	{
-		if (!ft_isdigit(format[*i]) && !is_flag(format[*i]) &&
-			!is_type(format[*i]) && format[*i] != '%')
+		if (!ft_isdigit(format[*i]) && !is_flag(format[*i])
+			&& !is_type(format[*i]) && format[*i] != '%')
 			break ;
 		if (format[*i] == '0')
 			extr_zeros_flag(tmp);
@@ -30,7 +30,10 @@ void			get_attr(t_attr *tmp, const char *format, int *i, va_list argmt)
 			extr_width_flag(tmp, format, i, argmt);
 		if (is_type(format[*i]) || format[*i] == '%')
 		{
-			tmp->type = (is_type(format[*i])) ? format[*i] : '%';
+			if (is_type(format[*i]))
+				tmp->type = format[*i];
+			else
+				tmp->type = '%';
 			*i = (*i) + 1;
 			break ;
 		}
@@ -38,20 +41,19 @@ void			get_attr(t_attr *tmp, const char *format, int *i, va_list argmt)
 	}
 }
 
-void			extr_zeros_flag(t_attr *tmp)
+void	extr_zeros_flag(t_attr *tmp)
 {
 	if (tmp->width == 0 && tmp->minus == 0)
 		tmp->zeros = 1;
 }
 
-void			extr_minus_flag(t_attr *tmp)
+void	extr_minus_flag(t_attr *tmp)
 {
 	tmp->minus = 1;
 	tmp->zeros = 0;
 }
 
-void			extr_width_flag(t_attr *tmp, const char *format, int *i,
-				va_list argmt)
+void	extr_width_flag(t_attr *tmp, const char *format, int *i, va_list argmt)
 {
 	if (format[*i] == '*')
 	{
@@ -75,8 +77,7 @@ void			extr_width_flag(t_attr *tmp, const char *format, int *i,
 	}
 }
 
-void			extr_dot_flag(t_attr *tmp, const char *format, int *i,
-				va_list argmt)
+void	extr_dot_flag(t_attr *tmp, const char *format, int *i, va_list argmt)
 {
 	*i = (*i) + 1;
 	tmp->dot = 0;
