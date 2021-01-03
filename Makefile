@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/12/17 15:41:38 by user42            #+#    #+#              #
-#    Updated: 2021/01/03 15:19:59 by user42           ###   ########.fr        #
+#    Updated: 2021/01/03 17:48:19 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ INC_NAME = cub3d.h
 INC = $(addprefix $(INC_PATH)/,$(INC_NAME))
 
 CC = clang
-CFLAGS = -Wall -Wextra -fsanitize=address -g3 -fno-omit-frame-pointer
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g3 -fno-omit-frame-pointer
 LFLAGS = -L libft/ft_printf -l ftprintf -L minilibx -l mlx -L /usr/lib -lXext -lX11 -lm -lbsd
 
 all		: $(NAME)

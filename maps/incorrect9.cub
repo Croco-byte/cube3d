@@ -1,0 +1,18 @@
+R 640 480 
+
+NO ./textures/Gold1.xpm
+SO ./textures/Gold0.xpm
+WE ./textures/GemOv1.xpm
+EA ./textures/TreeRings.xpm    
+
+S ./textures/barrel.xpm           
+S2 ./textures/guard.xpm
+S3 ./textures/cage.xpm
+S4 ./textures/spear.xpm
+
+F 100,30,22
+C 23,32,42
+
+E111111111
+1000000001
+1111111111
