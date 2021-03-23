@@ -10,7 +10,7 @@ S2 ./textures/guard.xpm
 S3 ./textures/cage.xpm
 S4 ./textures/spear.xpm
 
-F 100,30,22
+F 100,azze,22
 C 23,32,42
 
 111111111111111111111111111
